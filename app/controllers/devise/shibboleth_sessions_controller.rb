@@ -1,7 +1,7 @@
 class Devise::ShibbolethSessionsController < Devise::SessionsController
   unloadable
   def new
-    #resource = build_resource
+    resource = build_resource(hash = nil)
     shib_config = YAML.load(ERB.new(File.read(::Devise.shibboleth_config || "#{Rails.root}/config/shibboleth.yml")).result)[Rails.env]
 
     destination = request.protocol
